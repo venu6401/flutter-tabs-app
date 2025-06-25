@@ -7,7 +7,10 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Styled Tabs Demo',
-      theme: ThemeData(primarySwatch: Colors.blue),
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+        fontFamily: 'AnekTelugu', // Make sure this font is loaded
+      ),
       home: TabScreen(),
     );
   }
@@ -21,7 +24,7 @@ class TabScreen extends StatefulWidget {
 class _TabScreenState extends State<TabScreen> {
   int? selectedIndex;
 
-  final List<String> tabNames = ["Tab 1", "Tab 2"];
+  final List<String> tabNames = ["When Is Next !", "Let’s Track It !"];
   final List<String> tabSubtitles = ["Profile Info", "Settings Info"];
   final List<Widget> tabContents = [
     Container(
@@ -58,12 +61,7 @@ class _TabScreenState extends State<TabScreen> {
                   child: GestureDetector(
                     onTap: () {
                       setState(() {
-                        // If same tab is clicked again → unselect it
-                        if (selectedIndex == index) {
-                          selectedIndex = null;
-                        } else {
-                          selectedIndex = index;
-                        }
+                        selectedIndex = selectedIndex == index ? null : index;
                       });
                     },
                     child: Container(
